@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+// Define the expected props, making most optional with defaults
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string; // Optional: URL for Open Graph/Twitter image
+  noindex?: boolean; // Optional: To add noindex tag
+  canonicalURL?: URL | string; // Optional: Override default canonical URL
+}
+
+const {
+  title = 'Juan Benitez | Personal Writings', // Default title
+  description = 'Juan Benitez | Personal Writings', // Default description
+  image,
+  noindex = false,
+  canonicalURL = Astro.url, // Default canonical is the current page URL
+} = Astro.props as Props;
+
+// Construct the full image URL if a relative path is provided
+const socialImageURL = image
+  ? new URL(image, Astro.site).toString()
+  : new URL('/placeholder-social.jpg', Astro.site).toString(); // Default social image
+
+// Format the title to include the site name for non-homepage titles
+const formattedTitle = title === 'Juan Benitez | Software Developer' ? title : `${title}`;
+
+const permalink = canonicalURL.toString();
+---
+<!-- Standard SEO Meta Tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="canonical" href={permalink} />
+<meta name="title" content={formattedTitle} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={permalink} />
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+{socialImageURL && <meta property="og:image" content={socialImageURL} />}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={permalink} />
+<meta property="twitter:title" content={formattedTitle} />
+<meta property="twitter:description" content={description} />
+{socialImageURL && <meta property="twitter:image" content={socialImageURL} />}
+
+<!-- Sitemap/Indexing -->
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Favicon and Theme Color (Optional but Recommended) -->
+<link rel="icon" type="image/png" href="/favicon.png" />
+<meta name="theme-color" content="#ffffff" /> {/* Adjust theme color */}
+
+<title>{formattedTitle}</title> 

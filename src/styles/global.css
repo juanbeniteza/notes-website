@@ -1,0 +1,25 @@
+/* Add custom font definitions */
+@font-face {
+  font-family: 'Styrene B';
+  src: url('/fonts/StyreneB-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Styrene B';
+  src: url('/fonts/StyreneB-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Removed Google Font import */
+
+/* Existing Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Removed forced body font-family rule */

@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NotesSection from '../components/NotesSection.astro';
+import { getCollection } from 'astro:content';
+
+// Get all notes from the collection
+const allNotes = await getCollection('notes');
+// Sort by publication date, newest first
+const sortedNotes = allNotes.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const pageTitle = "Juan Benitez | Notes";
+---
+
+<Layout title={pageTitle}>
+  <NotesSection notes={sortedNotes} />
+</Layout>

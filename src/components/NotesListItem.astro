@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  pubDate: Date;
+  description: string;
+  url: string;
+}
+
+const { title, pubDate, description, url } = Astro.props;
+
+// Format the date as Month Day, Year
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+---
+
+<div class="mb-6 pb-4 border-b border-gray-300">
+  <div>
+    <div class="text-gray-400 text-xs uppercase tracking-wider mb-1">
+      {formattedDate}
+    </div>
+    <a 
+      href={`/${url}`}
+      class="text-lg font-medium hover:text-orange-600 block mb-2"
+    >
+      {title}
+    </a>
+    <p class="text-gray-500 italic">
+      {description}
+    </p>
+  </div>
+</div> 
