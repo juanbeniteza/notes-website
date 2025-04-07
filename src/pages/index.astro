@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NotesSection from '../components/NotesSection.astro';
+import Bio from '../components/Bio.astro';
 import { getCollection } from 'astro:content';
 
 // Get all notes from the collection
@@ -12,5 +13,6 @@ const pageTitle = "Juan Benitez | Notes";
 ---
 
 <Layout title={pageTitle}>
+  <Bio />
   <NotesSection notes={sortedNotes} />
 </Layout>
