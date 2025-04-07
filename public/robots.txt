@@ -1,0 +1,6 @@
+# Allow all user agents full access
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://juanbenitez.dev/sitemap-index.xml 

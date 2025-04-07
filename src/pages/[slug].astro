@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Generate static paths for all notes
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map(note => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+// Get the note data from props
+const { note } = Astro.props;
+// Get the rendered content
+const { Content } = await note.render();
+
+const pageTitle = `${note.data.title} | Notes`;
+---
+
+<Layout title={pageTitle} description={note.data.description}>
+  <article class="prose prose-note max-w-none">
+    <header class="mb-2">
+      <h1 class="text-xl font-semibold mb-0">{note.data.title}</h1>
+      <time datetime={note.data.pubDate.toISOString()} class="text-sm text-gray-500">
+        {new Date(note.data.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </time>
+      {note.data.tags && note.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-3">
+          {note.data.tags.map(tag => (
+            <span class="px-2 py-1 text-xs bg-gray-100 rounded-full">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+    
+    <Content />
+    
+    <div class="mt-10 pt-6 border-t border-gray-200">
+      <a href="/" class="text-orange-600 hover:underline">&larr; Back to all notes</a>
+    </div>
+  </article>
+</Layout> 

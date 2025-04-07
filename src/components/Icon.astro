@@ -1,0 +1,17 @@
+---
+// Use the Icon component from astro-icon
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+interface Props {
+  name: string; // Icon name
+  className?: string; // Pass through classes for sizing/styling
+}
+
+const { name, className } = Astro.props;
+
+
+// Get the mapped icon name or use the original if not mapped
+const iconName = name;
+---
+
+<AstroIcon name={iconName} class:list={[className]} aria-hidden="true" /> 

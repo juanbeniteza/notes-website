@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+// Use Lucide icons (and simple-icons:x)
+const socialLinks = [
+  { name: 'X', url: 'https://x.com/juanbeniteza', iconName: 'simple-icons:x' }, // Keep simple-icons for X logo
+  { name: 'GitHub', url: 'https://github.com/juanbeniteza', iconName: 'lucide:github' }, // Use Lucide
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/juanbenitezdev', iconName: 'lucide:linkedin' }, // Use Lucide
+  { name: 'Email', url: 'mailto:dev@juanbeniteza.com', iconName: 'lucide:mail' }, // Use Lucide
+];
+---
+{/* Remove pt-4 and border classes from footer */} 
+<footer class="max-w-[52rem] mx-auto px-4 w-full mt-12 pb-4">
+  {/* Add pt-4 and border classes to inner div */} 
+  <div class="flex justify-end space-x-4 border-t border-dotted border-tangerine pt-4">
+    {socialLinks.map(link => (
+      <a 
+        href={link.url} 
+        target={link.name === 'Email' ? '_self' : '_blank'}
+        rel="noopener noreferrer" 
+        aria-label={link.name}
+        class="text-gray-500 hover:text-gray-900"
+      >
+        {/* Ensure className sets the size */} 
+        <Icon name={link.iconName} className="w-5 h-5" /> {/* Adjusted size slightly */} 
+      </a>
+    ))}
+  </div>
+</footer> 

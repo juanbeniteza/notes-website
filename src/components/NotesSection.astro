@@ -1,0 +1,43 @@
+---
+import NotesListItem from './NotesListItem.astro';
+
+interface Note {
+  slug: string;
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    tags?: string[];
+    draft?: boolean;
+  };
+}
+
+interface Props {
+  notes: Note[];
+}
+
+const { notes } = Astro.props;
+
+// Filter out draft notes and future dates
+const publishedNotes = notes
+  .filter(note => !note.data.draft)
+  .filter(note => new Date(note.data.pubDate) <= new Date())
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<section id="notes" class="mb-10">
+  <div>
+    {publishedNotes.length === 0 ? (
+      <p class="text-gray-500 italic">No notes found. Check back soon!</p>
+    ) : (
+      publishedNotes.map(note => (
+        <NotesListItem 
+          title={note.data.title} 
+          pubDate={note.data.pubDate}
+          description={note.data.description} 
+          url={note.slug} 
+        />
+      ))
+    )}
+  </div>
+</section> 
