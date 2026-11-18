@@ -78,8 +78,9 @@ a:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 4px; }
 .skip-link { position: absolute; top: -80px; left: 20px; z-index: 10; background: var(--ink); color: white; padding: 10px 16px; }
 .skip-link:focus { top: 10px; }
 @media (max-width: 680px) {
+  .main-content { align-self: start; }
   .notes-home { padding-top: 60px; padding-bottom: 60px; }
-  .notes-home-empty { padding-top: 25px; padding-bottom: 25px; }
+  .notes-home-empty { padding-top: 24px; padding-bottom: 25px; }
   .intro h1 { font-size: 76px; }
   .intro-copy { font-size: 16px; }
   .notes-list { margin-top: 65px; }
