@@ -1,39 +1,38 @@
 ---
 import '../styles/global.css';
-import Footer from '../components/Footer.astro'; // Re-import Footer
-import SEO from '../components/SEO.astro'; // Import the SEO component
-import Header from '../components/Header.astro';
-
+import SEO from '../components/SEO.astro';
 interface Props {
-	title?: string; // Make title optional as SEO component has a default
-	description?: string; // Add description prop
-	// Add other SEO props you want to pass from pages
-	image?: string;
-	noindex?: boolean;
-	canonicalURL?: URL | string;
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  canonicalURL?: URL | string;
+  article?: boolean;
 }
-
-const { title, description, image, noindex, canonicalURL } = Astro.props;
+const { title, description, image, noindex, canonicalURL, article = false } = Astro.props;
 ---
-
 <!doctype html>
-<html lang="en" class="h-full">
-	<head>
-		<SEO
-			title={title}
-			description={description}
-			image={image}
-			noindex={noindex}
-			canonicalURL={canonicalURL}
-		/>
-		<meta name="generator" content={Astro.generator} />
-	</head>
-	<body class="h-full flex flex-col">
-		<main class="max-w-[52rem] mx-auto px-4 py-12 w-full flex-grow">
-			<Header />
-			<slot />
-		</main>
-
-		<Footer />
-	</body>
+<html lang="en">
+  <head>
+    <SEO title={title} description={description} image={image} noindex={noindex} canonicalURL={canonicalURL} article={article} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-frame">
+      <header class="site-header shell">
+        <a class="site-name" href="/">Notes<span>.</span></a>
+        <a class="portfolio-link" href="https://juanbenitez.dev">Portfolio</a>
+      </header>
+      <main id="main-content" class="shell main-content"><slot /></main>
+      <footer class="site-footer shell">
+        <span>© {new Date().getFullYear()} Juan Benitez</span>
+        <nav aria-label="Other links">
+          <a href="https://juanbenitez.dev">Portfolio</a>
+          <a href="https://github.com/juanbeniteza" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/juanbenitezdev" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
 </html>

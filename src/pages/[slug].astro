@@ -1,48 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
-// Generate static paths for all notes
 export async function getStaticPaths() {
-  const notes = await getCollection('notes');
-  return notes.map(note => ({
-    params: { slug: note.slug },
-    props: { note },
-  }));
+  const today = new Date();
+  const notes = (await getCollection('notes')).filter(note => !note.data.draft && note.data.pubDate <= today);
+  return notes.map(note => ({ params: { slug: note.slug }, props: { note } }));
 }
-
-// Get the note data from props
 const { note } = Astro.props;
-// Get the rendered content
-const { Content } = await note.render();
-
-const pageTitle = `${note.data.title} | Notes`;
+const { Content } = await render(note);
+const formattedDate = note.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
-
-<Layout title={pageTitle} description={note.data.description}>
-  <article class="prose prose-note max-w-none">
-    <header class="mb-2">
-      <h1 class="text-xl font-semibold mb-0">{note.data.title}</h1>
-      <time datetime={note.data.pubDate.toISOString()} class="text-sm text-gray-500">
-        {new Date(note.data.pubDate).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}
-      </time>
-      {note.data.tags && note.data.tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mt-3">
-          {note.data.tags.map(tag => (
-            <span class="px-2 py-1 text-xs bg-gray-100 rounded-full">#{tag}</span>
-          ))}
-        </div>
-      )}
+<Layout title={`${note.data.title} | Juan Benitez`} description={note.data.description} article={true}>
+  <article class="note-page">
+    <a class="all-notes-link" href="/">All notes</a>
+    <header class="article-header">
+      <time datetime={note.data.pubDate.toISOString()}>{formattedDate}</time>
+      <h1>{note.data.title}</h1>
+      <p>{note.data.description}</p>
+      {note.data.tags && note.data.tags.length > 0 && <ul class="tags">{note.data.tags.map(tag => <li>{tag}</li>)}</ul>}
     </header>
-    
-    <Content />
-    
-    <div class="mt-10 pt-6 border-t border-gray-200">
-      <a href="/" class="text-orange-600 hover:underline">&larr; Back to all notes</a>
-    </div>
+    <div class="article-body"><Content /></div>
+    <div class="article-end"><a href="/">All notes</a></div>
   </article>
-</Layout> 
+</Layout>

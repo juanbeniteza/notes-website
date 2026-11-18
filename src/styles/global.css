@@ -1,25 +1,101 @@
-/* Add custom font definitions */
 @font-face {
   font-family: 'Styrene B';
   src: url('/fonts/StyreneB-Regular.otf') format('opentype');
   font-weight: 400;
-  font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Styrene B';
   src: url('/fonts/StyreneB-Bold.otf') format('opentype');
   font-weight: 700;
-  font-style: normal;
   font-display: swap;
 }
-
-/* Removed Google Font import */
-
-/* Existing Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Removed forced body font-family rule */
+:root {
+  color-scheme: light;
+  --paper: #faf9f5;
+  --ink: #20221f;
+  --muted: #5e635c;
+  --line: #deded7;
+  --orange: #ed780d;
+  --orange-deep: #bd5400;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Styrene B', Arial, sans-serif; font-size: 16px; line-height: 1.7; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--orange-deep); }
+a:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 4px; }
+::selection { background: #ffca9c; color: var(--ink); }
+.shell { width: min(100%, 980px); margin-inline: auto; padding-inline: clamp(24px, 5vw, 52px); }
+.page-frame { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; }
+.site-header { min-height: 82px; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-bottom: 1px solid var(--line); }
+.site-name { font-size: 20px; font-weight: 700; letter-spacing: -.8px; }
+.site-name span { color: var(--orange); }
+.portfolio-link { font-size: 14px; color: var(--muted); }
+.main-content { width: 100%; }
+.notes-home { padding-top: clamp(54px, 9vh, 100px); padding-bottom: 75px; }
+.eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 19px; color: var(--orange-deep); font: 700 12px/1.5 monospace; letter-spacing: 1.15px; }
+.eyebrow-mark { width: 24px; height: 2px; background: var(--orange); }
+.intro h1 { font-size: clamp(68px, 11vw, 112px); letter-spacing: -6px; line-height: 1.08; font-weight: 400; margin: 0 0 19px; }
+.intro h1 span { color: var(--orange); }
+.intro-copy { color: var(--muted); font-size: 17px; max-width: 610px; margin: 0; line-height: 1.8; }
+.notes-list { margin-top: clamp(54px, 8vh, 90px); }
+.section-top { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; border-bottom: 1px solid var(--ink); padding-bottom: 12px; }
+.section-top h2 { font-size: 20px; font-weight: 700; letter-spacing: -.5px; margin: 0; }
+.section-top > span { color: var(--muted); font: 11px monospace; letter-spacing: 1px; }
+.notes-list ol { list-style: none; padding: 0; margin: 0; }
+.notes-list li { border-bottom: 1px solid var(--line); }
+.note-link { display: grid; grid-template-columns: 115px minmax(0, 1fr); column-gap: 28px; padding: 24px 0; }
+.note-link time { color: var(--muted); font: 13px/1.8 monospace; padding-top: 4px; }
+.note-title { font-size: 22px; line-height: 1.4; letter-spacing: -.6px; }
+.note-description { grid-column: 2; color: var(--muted); font-size: 14px; margin-top: 5px; }
+.note-link:hover .note-title { color: var(--orange-deep); }
+.empty-state { color: var(--muted); padding-block: 25px; }
+.note-page { max-width: 760px; padding-top: 48px; padding-bottom: 90px; }
+.all-notes-link { color: var(--orange-deep); font-size: 13px; font-weight: 700; }
+.article-header { padding-top: 44px; padding-bottom: 33px; border-bottom: 1px solid var(--line); }
+.article-header time { color: var(--orange-deep); font: 12px monospace; letter-spacing: .8px; }
+.article-header h1 { font-size: clamp(42px, 6vw, 68px); line-height: 1.15; font-weight: 400; letter-spacing: -3px; margin: 17px 0 18px; }
+.article-header > p { font-family: Georgia, serif; color: var(--muted); font-size: 21px; line-height: 1.5; margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 18px 0 0; }
+.tags li { font: 12px monospace; color: var(--orange-deep); background: #f5e7d8; padding: 4px 8px; }
+.article-body { padding-top: 18px; font-size: 18px; line-height: 1.9; color: #343a35; overflow-wrap: break-word; }
+.article-body > :first-child { margin-top: 0; }
+.article-body p { margin: 1.3em 0; }
+.article-body h2, .article-body h3 { color: var(--ink); line-height: 1.3; font-weight: 700; letter-spacing: -.7px; }
+.article-body h2 { font-size: 1.45em; margin: 1.8em 0 .7em; }
+.article-body h3 { font-size: 1.2em; margin: 1.5em 0 .6em; }
+.article-body a { color: var(--orange-deep); text-decoration: underline; text-underline-offset: 4px; }
+.article-body ul, .article-body ol { padding-left: 1.5em; margin: 1.2em 0; }
+.article-body li { margin-bottom: .4em; }
+.article-body blockquote { border-left: 3px solid var(--orange); padding-left: 20px; margin: 1.5em 0; color: var(--muted); font-family: Georgia, serif; }
+.article-body pre { overflow-x: auto; background: #282e2a; color: #f5f5ef; padding: 18px; font-size: 14px; line-height: 1.6; }
+.article-body :not(pre) > code { background: #f1eee6; padding: .15em .3em; font-size: .85em; }
+.article-body img { max-width: 100%; height: auto; }
+.article-end { border-top: 1px solid var(--line); margin-top: 52px; padding-top: 24px; color: var(--orange-deep); font-size: 14px; font-weight: 700; }
+.site-footer { min-height: 72px; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 25px; }
+.skip-link { position: absolute; top: -80px; left: 20px; z-index: 10; background: var(--ink); color: white; padding: 10px 16px; }
+.skip-link:focus { top: 10px; }
+@media (max-width: 680px) {
+  .site-header { min-height: 70px; }
+  .notes-home { padding-top: 60px; padding-bottom: 60px; }
+  .intro h1 { font-size: 76px; }
+  .intro-copy { font-size: 16px; }
+  .notes-list { margin-top: 65px; }
+  .note-link { grid-template-columns: 1fr; gap: 4px; padding: 22px 0; }
+  .note-link time { padding: 0; }
+  .note-title { font-size: 20px; }
+  .note-description { grid-column: 1; }
+  .note-page { padding-top: 33px; padding-bottom: 65px; }
+  .article-header { padding-top: 35px; }
+  .article-header h1 { font-size: 43px; letter-spacing: -1.8px; }
+  .article-header > p { font-size: 19px; }
+  .article-body { font-size: 17px; line-height: 1.85; }
+  .site-footer { padding-block: 18px; flex-wrap: wrap; gap: 10px; }
+  .site-footer nav { gap: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
