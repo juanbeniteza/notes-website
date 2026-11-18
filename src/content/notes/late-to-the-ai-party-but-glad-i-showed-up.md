@@ -2,6 +2,7 @@
 title: Late to the AI Party, But Glad I Showed Up
 description: It doesn’t matter how late you are—as long as you get there
 pubDate: 2025-04-07T00:00:00Z
+draft: true
 ---
 
 I have to admit it: I arrived very late to the AI party. Aside from using ChatGPT to help me with diet plans, workout routines, or even travel itineraries, I hadn’t really found it that useful in my day-to-day work as a developer.

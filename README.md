@@ -15,4 +15,4 @@ npm run dev
 npm run build
 ```
 
-The index lists published notes by date. Draft notes and future-dated notes are excluded from both the index and article routes. Canonical and social URLs use `notes.juanbenitez.dev`.
+The index lists published notes by date and shows a short coming-soon message when there are none. The original article is retained as a draft; draft notes and future-dated notes are excluded from both the index and article routes. Canonical and social URLs use `notes.juanbenitez.dev`.

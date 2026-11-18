@@ -30,13 +30,10 @@ a:hover { color: var(--orange-deep); }
 a:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 4px; }
 ::selection { background: #ffca9c; color: var(--ink); }
 .shell { width: min(100%, 980px); margin-inline: auto; padding-inline: clamp(24px, 5vw, 52px); }
-.page-frame { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; }
-.site-header { min-height: 82px; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-bottom: 1px solid var(--line); }
-.site-name { font-size: 20px; font-weight: 700; letter-spacing: -.8px; }
-.site-name span { color: var(--orange); }
-.portfolio-link { font-size: 14px; color: var(--muted); }
-.main-content { width: 100%; }
+.page-frame { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; }
+.main-content { width: 100%; align-self: center; }
 .notes-home { padding-top: clamp(54px, 9vh, 100px); padding-bottom: 75px; }
+.notes-home-empty { padding-top: 35px; padding-bottom: 35px; }
 .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 19px; color: var(--orange-deep); font: 700 12px/1.5 monospace; letter-spacing: 1.15px; }
 .eyebrow-mark { width: 24px; height: 2px; background: var(--orange); }
 .intro h1 { font-size: clamp(68px, 11vw, 112px); letter-spacing: -6px; line-height: 1.08; font-weight: 400; margin: 0 0 19px; }
@@ -53,7 +50,7 @@ a:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 4px; }
 .note-title { font-size: 22px; line-height: 1.4; letter-spacing: -.6px; }
 .note-description { grid-column: 2; color: var(--muted); font-size: 14px; margin-top: 5px; }
 .note-link:hover .note-title { color: var(--orange-deep); }
-.empty-state { color: var(--muted); padding-block: 25px; }
+.empty-message { border-top: 1px solid var(--line); margin: 64px 0 0; padding-top: 22px; color: var(--muted); font-size: 14px; }
 .note-page { max-width: 760px; padding-top: 48px; padding-bottom: 90px; }
 .all-notes-link { color: var(--orange-deep); font-size: 13px; font-weight: 700; }
 .article-header { padding-top: 44px; padding-bottom: 33px; border-bottom: 1px solid var(--line); }
@@ -81,11 +78,12 @@ a:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 4px; }
 .skip-link { position: absolute; top: -80px; left: 20px; z-index: 10; background: var(--ink); color: white; padding: 10px 16px; }
 .skip-link:focus { top: 10px; }
 @media (max-width: 680px) {
-  .site-header { min-height: 70px; }
   .notes-home { padding-top: 60px; padding-bottom: 60px; }
+  .notes-home-empty { padding-top: 25px; padding-bottom: 25px; }
   .intro h1 { font-size: 76px; }
   .intro-copy { font-size: 16px; }
   .notes-list { margin-top: 65px; }
+  .empty-message { margin-top: 45px; }
   .note-link { grid-template-columns: 1fr; gap: 4px; padding: 22px 0; }
   .note-link time { padding: 0; }
   .note-title { font-size: 20px; }
