@@ -31,7 +31,7 @@ a:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 4px; }
 ::selection { background: #ffca9c; color: var(--ink); }
 .shell { width: min(100%, 980px); margin-inline: auto; padding-inline: clamp(24px, 5vw, 52px); }
 .page-frame { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; }
-.main-content { width: 100%; align-self: center; }
+.main-content { align-self: start; }
 .notes-home { padding-top: clamp(54px, 9vh, 100px); padding-bottom: 75px; }
 .notes-home-empty { padding-top: 35px; padding-bottom: 35px; }
 .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 19px; color: var(--orange-deep); font: 700 12px/1.5 monospace; letter-spacing: 1.15px; }
